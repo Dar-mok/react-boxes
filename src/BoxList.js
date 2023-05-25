@@ -1,39 +1,41 @@
 import React, { useState } from "react";
 import Box from "./Box";
+import NewBoxForm from "./NewBoxForm";
+import { v4 as uuid } from 'uuid';
 
 function BoxList (){
     const [boxList, setBoxList] = useState([]);
 
-
-    const [FormData, setFormData] = useState({
-        backgroundColor: "",
-        width: "",
-        height: ""
-    });
-
-    function handleChange(evt){
-        const fieldName = evt.target.name;
-        const value = evt.target.value;
-
-        setFormData(currData => {
-            currData[fieldName] = value;
-            return {...currData};
-        });
+    function addBox(formData){
+        const newBox = {...formData, id: uuid()}
+        setBoxList(prev => [...prev, newBox])
     }
 
 
-    let display = boxList.map(box => <Box />)
+    let displayBoxes = boxList.map(box => {
+        return (
+            <div>
+            <Box
+                backgroundColor={box.backgroundColor}
+                width={box.width}
+                height={box.height}
+                />
+            </div>
+        )
+        })
 
 
     return (
         <div>
-
+            {displayBoxes}
+            <NewBoxForm
+            addBox={addBox}
+            />
         </div>
     )
-
-    export BoxList;
-
 }
+
+export default BoxList;
 
 
 
