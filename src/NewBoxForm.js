@@ -22,7 +22,12 @@ function NewBoxForm ({ addBox }){
     function handleSubmit(evt){
         evt.preventDefault();
         addBox(formData)
-        setFormData()
+        const copy = {...defaultFormData}
+        setFormData({
+            backgroundColor: "",
+            width: "",
+            height: ""
+        })
     }
 
     return (
@@ -33,6 +38,7 @@ function NewBoxForm ({ addBox }){
                  id="backgroundColor"
                  name="backgroundColor"
                  type="text"
+                 value={formData.backgroundColor}
                  onChange={handleChange}
                  />
 
@@ -41,6 +47,7 @@ function NewBoxForm ({ addBox }){
                 id="width"
                 name="width"
                 type="number"
+                value={formData.width}
                 onChange={handleChange}
                 />
 
@@ -49,6 +56,7 @@ function NewBoxForm ({ addBox }){
                 id="height"
                 name="height"
                 type="number"
+                value={formData.height}
                 onChange={handleChange}
                 />
                 <button>submit</button>

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-function Box({ backgroundColor, width, height }) {
+function Box({ backgroundColor, width, height, removeBox, id}) {
+
     let styles = {
-        backgroundColor: {backgroundColor},
-        width: {width},
-        height: {height},
+        backgroundColor: backgroundColor,
+        width: `${width}px`,
+        height: `${height}px`
     }
+
     return (<div>
-                <div style = {{styles}}>test </div>
-                <h2>hello</h2>
-                <button>X</button>
+                <div style={styles}></div>
+                <button onClick={()=>removeBox(id)}>X</button>
             </div>
            );
-
 }
   export default Box;
